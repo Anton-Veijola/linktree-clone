@@ -1,10 +1,10 @@
 class LinksController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :user_links
   before_action :set_link, only: %i[ show edit update destroy ]
 
   # GET /links or /links.json
   def index
-    @links = Link.all
+    @links = current_user.links.all
   end
 
   # GET /links/1 or /links/1.json
@@ -57,6 +57,12 @@ class LinksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def user_links
+    @user = User.find_by(username: params[:username])
+    redirect_to root_path, alert: "Sorry no user found!" if !@user
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

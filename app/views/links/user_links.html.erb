@@ -1,0 +1,10 @@
+<div class="flex flex-col w-full items-center justify-center">
+    <h1 class="text-4xl font-bold"><%= @user.username %>'s links</h1>
+
+    <% @user.links.each do |link| %>
+        <div class="flex flex-col p-4 rounded-2xl border-sky-300 border-6 items-center justify-center bg-green-300 mt-6">
+            <p class="font-bold"><%= link.name %></p>
+            <p><%= link.url %></p>
+        </div>
+    <% end %>
+</div>

@@ -10,6 +10,10 @@
     <%= link_to "New link", new_link_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
 
+  <%= current_user.username %>
+
+  <%= link_to "Sign out", destroy_user_session_path, data: { "turbo-method": :delete } %>
+
   <div id="links" class="min-w-full">
     <% if @links.any? %>
       <% @links.each do |link| %>
